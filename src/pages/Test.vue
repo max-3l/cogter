@@ -1,6 +1,8 @@
 <template>
   <q-page class="row items-center justify-evenly fit">
-    <q-inner-loading v-if="stages[currentStage].name === 'LOADING'" />
+    <video v-if="videoEnabled" ref="video" class="fixed-bottom-left q-m-md z-top" muted />
+    <ask-video v-if="stages[currentStage].name === 'ENABLE_VIDEO'" @done="accessCamera" />
+    <q-inner-loading v-else-if="stages[currentStage].name === 'LOADING'" />
     <user-information
       v-else-if="stages[currentStage].name === 'USER_INFORMATION'"
       @done="nextStage"
@@ -23,6 +25,7 @@ import { defineComponent } from 'vue';
 import UserInformation from 'src/components/UserInformation.vue';
 import Done from 'src/components/Done.vue';
 import Stroop from 'src/components/Stroop.vue';
+import AskVideo from 'src/components/AskVideo.vue';
 
 interface Stage {
   name: string;
@@ -35,6 +38,11 @@ const stages: Stage[] = [
     name: 'LOADING',
     props: {},
     timeout: 100
+  },
+  {
+    name: 'ENABLE_VIDEO',
+    props: {},
+    timeout: 0
   },
   {
     name: 'USER_INFORMATION',
@@ -50,11 +58,14 @@ const stages: Stage[] = [
 
 export default defineComponent({
   name: 'Test',
-  components: { Done, UserInformation, Stroop },
+  components: {
+    Done, UserInformation, Stroop, AskVideo
+  },
   data() {
     return {
       currentStage: -1,
-      stages
+      stages,
+      videoEnabled: false
     };
   },
   methods: {
@@ -69,6 +80,19 @@ export default defineComponent({
     },
     quit() {
       void this.$router.push({ name: 'Index' });
+    },
+    accessCamera() {
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        void navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then((stream) => {
+          this.videoEnabled = true;
+          void this.$nextTick(() => {
+            const video = this.$refs.video as HTMLVideoElement;
+            video.srcObject = stream;
+            void video.play();
+          });
+        });
+      }
+      this.nextStage();
     }
   },
   beforeMount() {
@@ -77,3 +101,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+video {
+  width: 10vw
+}
+</style>
