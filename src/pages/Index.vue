@@ -30,6 +30,7 @@ export default defineComponent({
       void this.$router.push({ name: 'Login', params });
     },
     goToTest() {
+      this.$store.commit('results/clearResults');
       void this.$router.push({ name: 'Test' });
     },
     logout() {

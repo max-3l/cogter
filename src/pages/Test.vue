@@ -1,8 +1,13 @@
 <template>
-  <q-page class="row items-center justify-evenly">
+  <q-page class="row items-center justify-evenly fit">
     <q-inner-loading v-if="stages[currentStage].name === 'LOADING'" />
     <user-information
       v-else-if="stages[currentStage].name === 'USER_INFORMATION'"
+      @done="nextStage"
+      :props="stages[currentStage].props"
+    />
+    <stroop
+      v-else-if="stages[currentStage].name === 'STROOP'"
       @done="nextStage"
       :props="stages[currentStage].props"
     />
@@ -17,6 +22,7 @@
 import { defineComponent } from 'vue';
 import UserInformation from 'src/components/UserInformation.vue';
 import Done from 'src/components/Done.vue';
+import Stroop from 'src/components/Stroop.vue';
 
 interface Stage {
   name: string;
@@ -34,12 +40,17 @@ const stages: Stage[] = [
     name: 'USER_INFORMATION',
     props: {},
     timeout: 0
+  },
+  {
+    name: 'STROOP',
+    props: {},
+    timeout: 0
   }
 ];
 
 export default defineComponent({
   name: 'Test',
-  components: { Done, UserInformation },
+  components: { Done, UserInformation, Stroop },
   data() {
     return {
       currentStage: -1,

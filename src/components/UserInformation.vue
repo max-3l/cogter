@@ -37,7 +37,7 @@ export default defineComponent({
       e.preventDefault();
       this.$q.dialog({
         title: 'Überprüfung',
-        message: 'Ich habe die eingegeben Daten überprüft und bestige hiermit die Korrektheit.',
+        message: 'Ich habe die eingegeben Daten überprüft und bestätige hiermit die Korrektheit.',
         ok: 'Ja',
         cancel: 'Zurück'
       }).onOk(() => {
