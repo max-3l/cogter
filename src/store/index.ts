@@ -9,6 +9,9 @@ import {
 // import example from './module-example'
 // import { ExampleStateInterface } from './module-example/state';
 
+import AuthStore from './auth';
+import { AuthStateInterface } from './auth/state';
+
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -22,7 +25,7 @@ export interface StateInterface {
   // Define your own store structure, using submodules if needed
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
-  example: unknown
+  auth: AuthStateInterface
 }
 
 // provide typings for `this.$store`
@@ -38,7 +41,7 @@ export const storeKey: InjectionKey<VuexStore<StateInterface>> = Symbol('vuex-ke
 export default store((/* { ssrContext } */) => {
   const Store = createStore<StateInterface>({
     modules: {
-      // example
+      auth: AuthStore
     },
 
     // enable strict mode (adds overhead!)

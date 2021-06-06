@@ -87,6 +87,7 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'prefer-promise-reject-errors': 'off',
     'comma-dangle': ['error', 'never'],
+    'eol-last': ['error', 'always'],
 
     // TypeScript
     quotes: ['warn', 'single', { avoidEscape: true }],

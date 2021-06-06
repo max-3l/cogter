@@ -1,6 +1,19 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    <q-btn label="Start now" @click="$router.push({ name: 'Login' })" size="xl" />
+    <q-btn
+      v-if="!isAuthenticated"
+      label="Login"
+      @click="goToLogin"
+      size="xl"
+    />
+    <div v-else class="column items-center justify-center q-gutter-md">
+      <h3> Du bist angemeldet 🥳 </h3>
+      <q-btn
+        label="Starten"
+        size="xl"
+      />
+      <div @click="logout" class="cursor-pointer">logout</div>
+    </div>
   </q-page>
 </template>
 
@@ -8,6 +21,22 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'PageIndex'
+  name: 'PageIndex',
+  methods: {
+    goToLogin() {
+      const params = { nextRouteName: 'Index' };
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      void this.$router.push({ name: 'Login', params });
+    },
+    logout() {
+      this.$store.commit('auth/clearAuth');
+    }
+  },
+  computed: {
+    isAuthenticated(): boolean {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      return this.$store.getters['auth/isAuthenticated'] as boolean;
+    }
+  }
 });
 </script>

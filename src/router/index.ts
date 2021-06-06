@@ -17,7 +17,7 @@ import routes from './routes';
  * with the Router instance.
  */
 
-export default route<StateInterface>((/* { store, ssrContext } */) => {
+export default route<StateInterface>(({ store }) => {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory);
@@ -32,6 +32,13 @@ export default route<StateInterface>((/* { store, ssrContext } */) => {
     history: createHistory(
       process.env.MODE === 'ssr' ? void 0 : process.env.VUE_ROUTER_BASE
     )
+  });
+
+  Router.beforeEach((to, _, next) => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    if (to.meta.requiresAuth && store.getters['auth/isAuthenticated'] as boolean) {
+      void next({ name: 'Index' });
+    } else next();
   });
 
   return Router;
