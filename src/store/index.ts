@@ -12,6 +12,9 @@ import {
 import AuthStore from './auth';
 import { AuthStateInterface } from './auth/state';
 
+import ResultsStore from './results';
+import { ResultsStateInterface } from './results/state';
+
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
@@ -26,12 +29,17 @@ export interface StateInterface {
   // example: ExampleStateInterface;
   // Declared as unknown to avoid linting issue. Best to strongly type as per the line above.
   auth: AuthStateInterface
+  results: ResultsStateInterface
+}
+
+interface RootStore extends VuexStore<StateInterface> {
+  getters: Record<string, unknown>;
 }
 
 // provide typings for `this.$store`
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $store: VuexStore<StateInterface>
+    $store: RootStore
   }
 }
 
@@ -41,7 +49,8 @@ export const storeKey: InjectionKey<VuexStore<StateInterface>> = Symbol('vuex-ke
 export default store((/* { ssrContext } */) => {
   const Store = createStore<StateInterface>({
     modules: {
-      auth: AuthStore
+      auth: AuthStore,
+      results: ResultsStore
     },
 
     // enable strict mode (adds overhead!)

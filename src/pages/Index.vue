@@ -11,6 +11,7 @@
       <q-btn
         label="Starten"
         size="xl"
+        @click="goToTest"
       />
       <div @click="logout" class="cursor-pointer">logout</div>
     </div>
@@ -27,6 +28,9 @@ export default defineComponent({
       const params = { nextRouteName: 'Index' };
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       void this.$router.push({ name: 'Login', params });
+    },
+    goToTest() {
+      void this.$router.push({ name: 'Test' });
     },
     logout() {
       this.$store.commit('auth/clearAuth');

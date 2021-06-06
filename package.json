@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@types/downloadjs": "^1.4.2",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "downloadjs": "^1.4.7",
     "quasar": "^2.0.0-beta.1",
     "vue3-keypress": "^4.0.1"
   },
