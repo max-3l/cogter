@@ -1,7 +1,7 @@
 <template>
   <q-page class="row items-center justify-evenly">
     <div>
-      <h3> Please log in using you sensor-hub account. </h3>
+      <h3> Please log in using your sensor-hub account. </h3>
       <q-form @submit="login" class="q-gutter-md">
         <q-input outlined label="E-Mail" v-model="email" required />
         <q-input outlined label="Passoword" type="password" v-model="password" required />

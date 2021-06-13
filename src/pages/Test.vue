@@ -104,6 +104,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 video {
-  width: 10vw
+  width: 15vw
 }
 </style>

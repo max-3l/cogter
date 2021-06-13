@@ -20,6 +20,7 @@
 </template>
 
 <script lang="ts">
+import { currentNanoTimestamp } from 'src/utils/time';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -42,7 +43,7 @@ export default defineComponent({
         cancel: 'Zurück'
       }).onOk(() => {
         this.$store.commit('results/addResult', {
-          time: window.performance.now(),
+          time: currentNanoTimestamp(),
           name: this.name,
           age: this.age,
           smoking: this.smoking,

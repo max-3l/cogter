@@ -11,6 +11,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import download from 'downloadjs';
+import { currentNanoTimestamp } from 'src/utils/time';
 
 export default defineComponent({
   name: 'Done',
@@ -20,7 +21,7 @@ export default defineComponent({
       const results = { results: this.$store.state.results.results };
       const testResults = {
         testResult: JSON.stringify(results),
-        timestamp: window.performance.now()
+        timestamp: currentNanoTimestamp()
       };
       await this.$api.post('/testresults', testResults, { headers: { Authorization: `Bearer ${this.$store.state.auth.token ?? ''}` } });
       this.$q.loading.hide();

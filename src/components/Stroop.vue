@@ -254,7 +254,7 @@ export default defineComponent({
     meanDuration15Correct(): number {
       const times = this.trials
         .map((element) => (element.correct ? element.clickTimeMS : Infinity));
-      const correct = times.filter((el) => el !== Infinity).sort().slice(0, 30);
+      const correct = times.filter((el) => el !== Infinity).sort().slice(20, 50);
       return average(correct);
     },
     meanDurationCorrect(): number {
