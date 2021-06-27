@@ -1,0 +1,8 @@
+# Ignore everything
+**
+
+# Do not ignore dist directory
+!dist/**
+
+# Do not ignore nginx configuration
+!nginx/**
