@@ -13,6 +13,11 @@
       @done="nextStage"
       :props="stages[currentStage].props"
     />
+    <arithmetik
+      v-else-if="stages[currentStage].name === 'ARITHMETIC'"
+      @done="nextStage"
+      :props="stages[currentStage].props"
+    />
     <done
       v-else-if="stages[currentStage].name === 'DONE'"
       @done="quit"
@@ -25,6 +30,7 @@ import { defineComponent } from 'vue';
 import UserInformation from 'src/components/UserInformation.vue';
 import Done from 'src/components/Done.vue';
 import Stroop from 'src/components/Stroop.vue';
+import Arithmetik from 'src/components/Arithmetik.vue';
 import AskVideo from 'src/components/AskVideo.vue';
 
 interface Stage {
@@ -53,13 +59,18 @@ const stages: Stage[] = [
     name: 'STROOP',
     props: {},
     timeout: 0
+  },
+  {
+    name: 'ARITHMETIC',
+    props: {},
+    timeout: 0
   }
 ];
 
 export default defineComponent({
   name: 'Test',
   components: {
-    Done, UserInformation, Stroop, AskVideo
+    Done, UserInformation, Stroop, AskVideo, Arithmetik
   },
   data() {
     return {

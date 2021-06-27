@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   viewBox="0 0 1000 300"
+   version="1.1"
+   id="svg5"
+   width="1000"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <rect
+      style="fill:#d40000;fill-rule:evenodd;stroke-width:0.958184"
+      id="bad"
+      width="400"
+      height="130"
+      x="20"
+      y="85" />
+  <rect
+      style="fill:#d4aa00;fill-rule:evenodd;stroke-width:0.830584"
+      id="medium"
+      width="304.26315"
+      height="130"
+      x="420"
+      y="85" />
+  <rect
+      style="fill:#008000;fill-rule:evenodd;stroke-width:0.735634"
+      id="good"
+      width="238.67543"
+      height="130"
+      x="724.26318"
+      y="85" />
+  <path
+      style="fill:#000000"
+      id="participant"
+      d="m 301.68921,295.99085 -31.74414,0.0156 -31.74413,0.0157 15.85851,-27.49906 15.85851,-27.49906 15.88562,27.4834 z"
+      transform="matrix(1.010101,0,0,1.010101,64.969458,-51.452944)" />
+  <path
+      style="fill:#000000"
+      id="others"
+      transform="matrix(0.98747466,0,0,-1.0106764,543.38259,356.48263)"
+      d="m 301.68921,295.99085 -31.74414,0.0156 -31.74413,0.0157 15.85851,-27.49906 15.85851,-27.49906 15.88562,27.4834 z" />
+  <text
+      xml:space="preserve"
+      style="font-style:normal;font-weight:normal;font-size:40.404px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.0101"
+      x="345.36786"
+      y="46.841026"
+      id="avg_group"><tspan
+        id="tspan4894"
+        style="stroke-width:1.0101"
+        x="345.36786"
+        y="46.841026">Durchschnitt Vergleichsgruppe</tspan></text>
+  <text
+      xml:space="preserve"
+      style="font-style:normal;font-weight:normal;font-size:40.404px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.0101"
+      x="20.552109"
+      y="287.1142"
+      id="your_perf"><tspan
+        id="tspan14114"
+        style="stroke-width:1.0101"
+        x="20.552109"
+        y="287.1142">Ihre Leistung</tspan></text>
+</svg>

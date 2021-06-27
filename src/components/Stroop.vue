@@ -7,16 +7,18 @@
       <p>
         Bitte lesen Sie sich die folgende Anleitung genau durch.
         <br><br>
-        Es folgt nun ein Test der Ihre kognitiver Leistungsfähigkeit misst.<br>
-        In den nächsten Minuten werden Ihnen jeweils Farbwort (ROT, GRÜN, BLAU, oder GELB)
+        Es folgt nun ein Test, der Ihre kognitive Leistungsfähigkeit misst.<br>
+        In den nächsten Minuten werden Ihnen Farbwörter (ROT, GRÜN, BLAU, oder GELB)
         angezeigt. Die angezeigten Wörter sind auch in einer der eben genannten Farben
-        eingefärbt. Jedoch sind die Farben zufällig, sodass das geschriebene Wort nicht
-        immer mit der Farbe des Wortes übereinstimmt. Ihre Aufgabe ist es möglichst schnell
+        eingefärbt. Die Farben sind jedoch zufällig, sodass das geschriebene Wort nicht
+        immer mit der Farbe des Wortes übereinstimmt. Ihre Aufgabe ist es schnellstmöglich
         die Farbe des Wortes (nicht den Text) zu erkennen. Drücken sie die Pfeiltaste nach oben,
         wenn das Wort <span class="text-red">ROT</span> ist, die Pfeiltaste nach unten,
         wenn das Wort <span class="text-blue">BLAU</span> ist, die Pfeiltaste nach links,
         wenn das Wort <span class="text-yellow">GELB</span> ist, und die Pfeiltaste nach rechts,
         wenn das Wort <span class="text-green">GRÜN</span> ist. Sie haben pro Wort 3 Sekunden Zeit.
+        Sie brauchen sich die Farbanordnung nicht zu merken, die Legende ist auch während des Tests
+        zu sehen.
       </p>
       <arrow-keys
         width="300px"
@@ -53,9 +55,10 @@
       <p>
         Ihre durchschnittliche Reaktionszeit bei richtigen Antworten
         beträgt {{ meanDurationCorrect.toFixed(2) }} Millisekunden.
+        {{ (correctRate * 100).toFixed(2) }}% Iherer Eingaben war korrekt.
         <br><br>
-        66.4% der Personen in Ihrer Altersgruppe haben eine schnellere
-        Reaktionszeit als Sie. Der automatische Timer wird nun auf die
+        67.4% der Personen in Ihrer Altersgruppe haben eine bessere
+        Bewertung als Sie. Der automatische Timer wird nun auf die
         durchschnittliche Reaktionszeit der Personen Ihrer Altersgruppe
         angepasst.
       </p>
@@ -220,7 +223,7 @@ export default defineComponent({
             if (keyBindings[keyCode] === this.currentStroop.color) {
               this.addTrialResult(true, timerEnded - this.timerStarted, true);
             } else {
-              this.addTrialResult(true, timerEnded - this.timerStarted, true);
+              this.addTrialResult(false, timerEnded - this.timerStarted, true);
               this.wrongAnimation();
             }
             this.checkResults();
@@ -246,7 +249,7 @@ export default defineComponent({
     startStroop3() {
       this.currentStroop = { text: 'Bereit halten', color: 'Black' };
       this.show = 'STROOP';
-      this.duration = this.meanDuration15Correct / 1000;
+      this.duration = Math.max(0.45, this.meanDuration15Correct / 1000); // Mindestens 450 ms
       setTimeout(() => this.stroop(), this.duration * 1000);
     }
   },
@@ -262,6 +265,17 @@ export default defineComponent({
         .map((element) => (element.correct ? element.clickTimeMS : Infinity));
       const correct = times.filter((el) => el !== Infinity);
       return average(correct);
+    },
+    correctRate(): number {
+      if (this.trials.length === 0) return 0;
+      const errors = this.trials
+        .map((element) => (element.correct ? 1 : 0));
+      return errors.reduce((a: number, b: number) => a + b, 0) / this.trials.length;
+    }
+  },
+  beforeUnmount() {
+    if (this.currentTimer != null) {
+      window.clearInterval(this.currentTimer);
     }
   }
 });
