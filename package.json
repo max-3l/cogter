@@ -19,6 +19,7 @@
     "core-js": "^3.6.5",
     "downloadjs": "^1.4.7",
     "quasar": "^2.0.0-beta.1",
+    "tone": "^14.8.26",
     "vue3-keypress": "^4.0.1"
   },
   "devDependencies": {

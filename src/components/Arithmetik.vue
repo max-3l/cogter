@@ -20,7 +20,7 @@
       Sie hatten nun mit 5 einfachen Rechenaufgaben die Möglichkeit das Aufgabenschema
       kennenzulernen. Es werden nun weitere Aufagben folgen. Bei dieser Stufe handelt es
       sich um einen Test der ihre kognitive Leistung schnell einfache Probleme zu lösen
-      misst. Sie haben pro Aufgabe 2 Sekunden Zeit.
+      misst. Sie haben pro Aufgabe 3 Sekunden Zeit.
       <q-btn class="q-mt-md" label="Verstanden" @click="startPhase2" size="lg" />
     </div>
     <div v-if="currentPhase === 3" class="text-region column justify-center items-center">
@@ -117,7 +117,7 @@ const tasks: MathTask[] = [
   { task: '(1 / 2 + 2 / 2 + 3 / 2) * 13', solution: '39' },
   { task: '(12 / 7 + 19 / 7) * 7 + 24', solution: '55' },
   { task: '(66 + 6) / 6 * 7', solution: '84' },
-  { task: '√(169)', solution: '11' },
+  { task: '√(169)', solution: '13' },
   { task: '16 * 17 + 8', solution: '280' },
   { task: '(5 * 25  / 20 * 4) * x (d / dx)', solution: '25' },
   { task: '77 + 88 + 111 ', solution: '375' }

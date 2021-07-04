@@ -249,7 +249,7 @@ export default defineComponent({
     startStroop3() {
       this.currentStroop = { text: 'Bereit halten', color: 'Black' };
       this.show = 'STROOP';
-      this.duration = Math.max(0.45, this.meanDuration15Correct / 1000); // Mindestens 450 ms
+      this.duration = Math.max(0.6, this.meanDuration15Correct / 1000); // Mindestens 450 ms
       setTimeout(() => this.stroop(), this.duration * 1000);
     }
   },

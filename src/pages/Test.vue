@@ -18,6 +18,11 @@
       @done="nextStage"
       :props="stages[currentStage].props"
     />
+    <nback
+      v-else-if="stages[currentStage].name === 'NBACK'"
+      @done="nextStage"
+      :props="stages[currentStage].props"
+    />
     <done
       v-else-if="stages[currentStage].name === 'DONE'"
       @done="quit"
@@ -32,6 +37,7 @@ import Done from 'src/components/Done.vue';
 import Stroop from 'src/components/Stroop.vue';
 import Arithmetik from 'src/components/Arithmetik.vue';
 import AskVideo from 'src/components/AskVideo.vue';
+import NBack from 'src/components/Nback.vue';
 
 interface Stage {
   name: string;
@@ -56,12 +62,7 @@ const stages: Stage[] = [
     timeout: 0
   },
   {
-    name: 'STROOP',
-    props: {},
-    timeout: 0
-  },
-  {
-    name: 'ARITHMETIC',
+    name: 'NBACK',
     props: {},
     timeout: 0
   }
@@ -70,7 +71,8 @@ const stages: Stage[] = [
 export default defineComponent({
   name: 'Test',
   components: {
-    Done, UserInformation, Stroop, AskVideo, Arithmetik
+    // eslint-disable-next-line quote-props
+    Done, UserInformation, Stroop, AskVideo, Arithmetik, 'nback': NBack
   },
   data() {
     return {
